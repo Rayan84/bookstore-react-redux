@@ -1,10 +1,12 @@
-# Bookstore		
+# Bookstore	
 			
 This application is a bookstore website, it demonstrate functionalities to add and remove books from the book list.
-			
+
+
+## Screenshot
+		
 <img src='./src/screenshot.png'>			
-			
-			
+				
 ## Built With			
 			
 - JavaScript			
