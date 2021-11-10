@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
+import AddNewBook from './AddNewBook';
 
-const Booklist = () => {
-  return (
-    <div>
-      <h1>Book List</h1>
-    </div>
-  );
-}
-
+const Booklist = () => (
+  <div>
+    <AddNewBook />
+    <h1>Book List</h1>
+  </div>
+);
 export default Booklist;

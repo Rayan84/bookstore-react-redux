@@ -1,26 +1,26 @@
 import './App.css';
-import Nav from './components/Nav';
+import { React, Fragment } from 'react';
 import {
-   BrowserRouter as Router,
-   Routes,
-   Route
-  } from 'react-router-dom';
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import Nav from './components/Nav';
 import Categories from './redux/categories/categories';
 import Booklist from './components/Booklist';
-import { Fragment } from 'react';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Router>
-          <Fragment>
-          <Nav />
-          <Routes>
-            <Route path="/categories" element={<Categories />}/>
-            <Route path="/" element={<Booklist />}/>
-          </Routes>
-          </Fragment>
+          <>
+            <Nav />
+            <Routes>
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/" element={<Booklist />} />
+            </Routes>
+          </>
         </Router>
       </header>
     </div>
