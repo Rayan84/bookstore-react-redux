@@ -24,13 +24,13 @@ To get a local copy up and running follow these simple example steps.
 			
 ### Installation			
 			
-to install the project dependencies run			
+To install the project dependencies run			
 			
 `npm install`			
 			
 ### Deployment			
 			
-to build:			
+To run on a local server:
 			
 `npm start`			
 			
