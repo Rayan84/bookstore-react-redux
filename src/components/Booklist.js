@@ -1,18 +1,28 @@
 import React from 'react';
-import AddNewBook from './AddNewBook';
-import books from './Book';
+import Book from './Book';
 
-const Booklist = (books) => (
-  <div>
-    books.map(book) => (
-      <li key={book.id}>
-        <p>{book.title}</p>
-        <p>{book.author}</p>
-        <button>Delete</button>
-      </li>
-    )
-    <AddNewBook />
-    <h1>Book List</h1>
-  </div>
-);
+const Booklist = () => {
+  const books = [
+    {
+      title: 'The title',
+      author: 'The author',
+      id: 1,
+    },
+  ];
+  return (
+    <div>
+      <Book />
+      <h1>Book List</h1>
+      <div>
+        {books.map((book) => (
+          <ul key={book.id}>
+            <li>{book.title}</li>
+            <li>{book.author}</li>
+          </ul>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default Booklist;
