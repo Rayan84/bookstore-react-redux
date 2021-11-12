@@ -1,10 +1,12 @@
-# Bookstore		
+# Bookstore	
 			
 This application is a bookstore website, it demonstrate functionalities to add and remove books from the book list.
-			
+
+
+## Screenshot
+		
 <img src='./src/screenshot.png'>			
-			
-			
+				
 ## Built With			
 			
 - JavaScript			
@@ -24,13 +26,13 @@ To get a local copy up and running follow these simple example steps.
 			
 ### Installation			
 			
-to install the project dependencies run			
+To install the project dependencies run			
 			
 `npm install`			
 			
 ### Deployment			
 			
-to build:			
+To run on a local server:
 			
 `npm start`			
 			
