@@ -14,7 +14,6 @@ const Book = () => {
       title,
       author,
     };
-    console.log(newBook.id);
     dispatch(addBook(newBook));
   };
 
