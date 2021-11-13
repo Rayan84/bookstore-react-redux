@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 const FETCH_BOOKS_REQUEST = 'bookStore/books/fetch_request';
 const FETCH_BOOKS_SUCCESS = 'bookStore/books/fetch_success';
 const FETCH_BOOKS_FAILURE = 'bookStore/books/fetch_failure';
-const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/fUrhkUGF4jmdoIuVYopl/books';
+const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/I9d2Kfizcgn27PpbUmME/books';
 
 const initialState = {
   loading: false,
