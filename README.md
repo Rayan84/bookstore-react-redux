@@ -5,7 +5,7 @@ This application is a bookstore website, it demonstrate functionalities to add a
 
 ## Screenshot
 		
-<img src='./src/screenshot.png'>			
+<img src='./src/components/screenshot.png'>			
 				
 ## Built With			
 			
