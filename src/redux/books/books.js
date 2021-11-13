@@ -1,35 +1,97 @@
-// books.js
+import axios from 'axios';
+import { v4 } from 'uuid';
 
-const ADD_BOOK = 'bookStore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
-const initialState = [{
-  title: 'title1',
-  author: 'author1',
-  id: 1,
-},
-{
-  title: 'title2',
-  author: 'author2',
-  id: 2,
-},
-];
+const FETCH_BOOKS_REQUEST = 'bookStore/books/fetch_request';
+const FETCH_BOOKS_SUCCESS = 'bookStore/books/fetch_success';
+const FETCH_BOOKS_FAILURE = 'bookStore/books/fetch_failure';
+const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/fUrhkUGF4jmdoIuVYopl/books';
 
-export const addBook = (payload) => ({
-  type: ADD_BOOK,
+const initialState = {
+  loading: false,
+  books: [],
+  error: '',
+};
+
+export const fetchBooksRequest = () => ({
+  type: FETCH_BOOKS_REQUEST,
+});
+export const fetchBooksSuccess = (payload) => ({
+  type: FETCH_BOOKS_SUCCESS,
+  payload,
+});
+export const fetchBooksFailure = (payload) => ({
+  type: FETCH_BOOKS_FAILURE,
   payload,
 });
 
-export const removeBook = (payload) => ({
-  type: REMOVE_BOOK,
-  payload,
-});
+export const fetchBooks = () => (dispatch) => {
+  dispatch(fetchBooksRequest());
+  axios
+    .get(URL, { headers: {} })
+    .then((response) => {
+      const data = Object.entries(response.data).map(([itemId, [book]]) => ({
+        id: itemId,
+        title: book.title,
+        category: book.category,
+      }));
+      dispatch(fetchBooksSuccess(data));
+    })
+    .catch((error) => {
+      fetchBooksFailure(error.message);
+    });
+};
+
+export const addBook = (payload) => (dispatch) => {
+  dispatch(fetchBooksRequest());
+  axios
+    .post(URL, {
+      item_id: v4(),
+      title: payload.title,
+      category: payload.category,
+    })
+    .then((response) => {
+      if (response.data === 'Created') {
+        dispatch(fetchBooks());
+      }
+    })
+    .catch((error) => {
+      fetchBooksFailure(error.message);
+    });
+};
+
+export const removeBook = (payload) => (dispatch) => {
+  dispatch(fetchBooksRequest());
+  axios
+    .delete(`${URL}/${payload.id}`)
+    .then((response) => {
+      if (response.data === 'The book was deleted successfully!') {
+        dispatch(fetchBooks());
+      }
+    })
+    .catch((error) => {
+      fetchBooksFailure(error.message);
+    });
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_BOOK:
-      return ([...state, action.payload]);
-    case REMOVE_BOOK:
-      return (state.filter((book) => book.id !== action.payload));
+    case FETCH_BOOKS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_BOOKS_SUCCESS:
+      return {
+        books: action.payload,
+        loading: false,
+        error: '',
+      };
+    case FETCH_BOOKS_FAILURE:
+      return {
+        error: action.payload,
+        loading: false,
+        books: [],
+      };
     default:
       return state;
   }
