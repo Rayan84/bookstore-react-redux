@@ -1,28 +1,39 @@
-.App {
-  text-align: center;
+.app-container {
+  height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.link {
+  text-decoration: none;
+  color: gray;
 }
 
-h1 {
-  color: orange;
+li:not(:first-child)::before {
+  content: " | ";
+  color: gainsboro;
 }
 
-.navbar {
-  display: flex;
+.li-button:hover {
+  color: red;
 }
 
-.navbar li {
-  list-style: none;
-  margin: 5px;
-}
-
-.navbar li a {
+.link-active {
+  color: black;
   text-decoration: none;
 }
 
-.navbar li a:hover {
+.link:hover {
   color: black;
+}
+
+.book-container {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.spinner {
+  position: absolute;
+  margin: auto;
+  right: 50%;
+  bottom: 50%;
+  font-size: 50%;
 }

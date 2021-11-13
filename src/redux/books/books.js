@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 const FETCH_BOOKS_REQUEST = 'bookStore/books/fetch_request';
 const FETCH_BOOKS_SUCCESS = 'bookStore/books/fetch_success';
 const FETCH_BOOKS_FAILURE = 'bookStore/books/fetch_failure';
-const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/fUrhkUGF4jmdoIuVYopl/books';
+const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/Ne1lNPOcr1S2yLU5FAOd/books';
 
 const initialState = {
   loading: false,
@@ -27,7 +27,7 @@ export const fetchBooksFailure = (payload) => ({
 export const fetchBooks = () => (dispatch) => {
   dispatch(fetchBooksRequest());
   axios
-    .get(URL, { headers: {} })
+    .get(BASE_URL, { headers: {} })
     .then((response) => {
       const data = Object.entries(response.data).map(([itemId, [book]]) => ({
         id: itemId,
@@ -44,7 +44,7 @@ export const fetchBooks = () => (dispatch) => {
 export const addBook = (payload) => (dispatch) => {
   dispatch(fetchBooksRequest());
   axios
-    .post(URL, {
+    .post(BASE_URL, {
       item_id: v4(),
       title: payload.title,
       category: payload.category,
@@ -62,7 +62,7 @@ export const addBook = (payload) => (dispatch) => {
 export const removeBook = (payload) => (dispatch) => {
   dispatch(fetchBooksRequest());
   axios
-    .delete(`${URL}/${payload.id}`)
+    .delete(`${BASE_URL}/${payload.id}`)
     .then((response) => {
       if (response.data === 'The book was deleted successfully!') {
         dispatch(fetchBooks());

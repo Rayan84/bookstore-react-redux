@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <Navbar bg="white" expand="lg" className="border border-bottom-3">
       <Container className="p-3 bg-white">
-        <NavLink to="/" className="h2 text-decoration-none text-primary me-5">BookStore CMS</NavLink>
+        <NavLink to="/" className="h2 text-decoration-none text-primary me-5 fw-bold">Bookstore CMS</NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav
